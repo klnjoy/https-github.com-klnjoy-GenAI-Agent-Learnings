@@ -1,6 +1,6 @@
 site_name: GenAI & Agentic AI Knowledge Base
 site_description: Personal study material and notes for GenAI / Agentic AI and the data/cloud stack.
-site_url: https://klnjoy.github.io/GenAI-Agent-Learning/
+site_url: https://klnjoy.github.io/https-github.com-klnjoy-GenAI-Agent-Learnings/
 
 # All markdown is copied into docs/ by sync_docs.py before building.
 docs_dir: docs
