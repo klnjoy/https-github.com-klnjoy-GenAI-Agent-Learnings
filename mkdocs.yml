@@ -166,6 +166,7 @@ nav:
       - "GenAI Interview Q&A": Personal-SourceCode/GenAI_Interview_QA.md
       - "FDE Interview Q&A": Personal-SourceCode/Forward_Deployed_Engineer_Interview_QA.md
       - FDE Coding Prep: Personal-SourceCode/FDE_Coding_Interview_Prep.md
+      - "FDE Live-Coding & Scenarios": Personal-SourceCode/FDE_LiveCoding_Scenarios_Prep.md
       - Cloud Delivery Lead Prep: Personal-SourceCode/Interview_Prep_Google_Cloud_Delivery_Lead.md
   - Projects & POCs:
       - Data Migration (Oracle to Snowflake): Projects/data-migration/index.md

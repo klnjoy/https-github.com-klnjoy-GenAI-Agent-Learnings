@@ -91,7 +91,7 @@ CATEGORIES: list[tuple[str, str, tuple[str, ...]]] = [
     ("Study Guide", ":material-book-open-variant:",
      ("study-book", "study book", "complete-study")),
     ("Interview Guide", ":material-account-tie:",
-     ("interview", "coding-interview", "qa")),
+     ("interview", "coding-interview", "qa", "fde", "livecoding")),
     ("Projects & POCs", ":material-rocket-launch:",
      ("poc", "project", "architecture", "sql-assistant", "procurement",
       "langchain", "langgraph", "lambda", "crud", "knowledge base",
