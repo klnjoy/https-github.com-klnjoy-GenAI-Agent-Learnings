@@ -27,7 +27,7 @@ Source folder: `extracted/MODULE7-GRAPHDB`
 
 ## Word documents (4)
 
-- `1.WHY-GRAPH-DB(1).docx` — 97.0 KB
-- `1.WHY-GRAPH-DB.docx` — 97.0 KB
-- `1.LAB-SETUP.docx` — 185.9 KB
-- `LC-GRAPHDB-FINAL-PROJECT.docx` — 2.7 MB
+- [1.WHY-GRAPH-DB(1).docx](files/module7-graphdb/MODULE7-GRAPHDB/1.INTRO-GRAPHDB-NEO4J/DRAWIO-ARCH-DIAGRAMS/1.WHY-GRAPH-DB(1).docx) — 97.0 KB — download
+- [1.WHY-GRAPH-DB.docx](files/module7-graphdb/MODULE7-GRAPHDB/1.INTRO-GRAPHDB-NEO4J/DRAWIO-ARCH-DIAGRAMS/1.WHY-GRAPH-DB.docx) — 97.0 KB — download
+- [1.LAB-SETUP.docx](files/module7-graphdb/MODULE7-GRAPHDB/2.WORKING-WITH-CYPHER/DRAWIO-ARCH-DIAGRAMS/1.LAB-SETUP.docx) — 185.9 KB — download
+- [LC-GRAPHDB-FINAL-PROJECT.docx](files/module7-graphdb/MODULE7-GRAPHDB/3.PROJECT/LC-GRAPHDB-FINAL-PROJECT.docx) — 2.7 MB — download

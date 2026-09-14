@@ -27,4 +27,4 @@ Source folder: `extracted/SUNDAY-SESSIONS`
 
 ## Word documents (1)
 
-- `GENAI-EKS.docx` — 2.8 MB
+- [GENAI-EKS.docx](files/sunday-sessions/SUNDAY-SESSIONS/EKS/GENAI-EKS.docx) — 2.8 MB — download

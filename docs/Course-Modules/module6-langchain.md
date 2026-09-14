@@ -23,4 +23,4 @@ Source folder: `extracted/MODULE6-LANGCHAIN`
 
 ## Word documents (1)
 
-- `3.LC-AGENTIC-RAG-HYBRID-SEARCH.docx` — 6.6 KB
+- [3.LC-AGENTIC-RAG-HYBRID-SEARCH.docx](files/module6-langchain/MODULE6-LANGCHAIN/DRAWIO-ARCH-DIAGRAMS/3.LC-AGENTIC-RAG-HYBRID-SEARCH.docx) — 6.6 KB — download

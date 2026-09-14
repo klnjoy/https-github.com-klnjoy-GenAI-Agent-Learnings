@@ -150,6 +150,7 @@ nav:
       - Reference Architectures: Enterprise/reference-architectures/index.md
   - Study Guide:
       - "Generative AI & Agentic AI — Complete Study Book": Personal-SourceCode/GenAI-AgenticAI-Complete-Study-Book.md
+      - "Generative AI & Agentic AI — Complete Study Book": GENAI-AGENTICAI/GenAI-AgenticAI-Complete-Study-Book.md
       - MODULE1-GENAI: Course-Modules/module1-genai.md
       - MODULE2-AWS-CLOUD: Course-Modules/module2-aws-cloud.md
       - MODULE3-PYTHON: Course-Modules/module3-python.md
@@ -171,4 +172,5 @@ nav:
       - "GenAI POC (LangChain & LangGraph)": Projects/genai-poc/index.md
       - "GenAI POC - LangChain & LangGraph Learning": Personal-SourceCode/genai-poc/README.md
       - GenAI Procurement Audit Bot — Architecture: Personal-SourceCode/genai-procurement-architecture.md
+      - GenAI SQL Assistant – Enterprise Architecture (Lambda + LLM + Chainlit + DB Executor): GENAI-AGENTICAI/MODULE4-PROMPT-ENGINEERING-20260805T215558Z-1-001/MODULE4-PROMPT-ENGINEERING/PROJECT/PROJECT3-PROMPT-ENGG-TEXT-TO-SQL/README.md
 # NAV:END

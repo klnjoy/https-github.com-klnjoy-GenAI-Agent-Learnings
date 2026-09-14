@@ -423,9 +423,12 @@ def sync_markdown() -> list[tuple[str, str, str]]:
 # File types we copy into the site so they can be opened from the browser.
 # PDFs open inline; drawio downloads; notebooks are converted to HTML.
 OPENABLE_EXTS = {".pdf", ".drawio", ".html", ".htm", ".txt", ".csv", ".png",
-                 ".jpg", ".jpeg", ".gif", ".py", ".json"}
+                 ".jpg", ".jpeg", ".gif", ".py", ".json",
+                 # Office docs: browsers can't render these inline, but we copy
+                 # + link them so clicking downloads the file.
+                 ".docx", ".doc", ".pptx", ".ppt"}
 # Big binary types we deliberately skip copying (still listed, not linked).
-SKIP_COPY_EXTS = {".docx", ".doc", ".pptx", ".ppt", ".zip"}
+SKIP_COPY_EXTS = {".zip"}
 
 
 def _convert_notebook(src: Path, dest_html: Path) -> bool:
@@ -554,7 +557,7 @@ def build_module_pages() -> list[tuple[str, str, int, str | None]]:
                     link = f"files/{slug}/{rel}"
                     if ext == ".pdf":
                         note = "opens in browser"
-                    elif ext == ".drawio":
+                    elif ext in (".drawio", ".docx", ".doc", ".pptx", ".ppt"):
                         note = "download"
                 except OSError as exc:
                     print(f"WARNING: copy failed for {p.name}: {exc}")

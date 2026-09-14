@@ -74,7 +74,7 @@ Source folder: `extracted/MODULE4-PROMPT-ENGINEERING`
 
 ## Word documents (4)
 
-- `4.PROMPT-ENGG-PROMPT-ENGG-1.docx` — 20.7 KB
-- `CREATE-OPENAI-TAVILY-ACCOUNTS.docx` — 1.4 MB
-- `handynotes.docx` — 14.5 KB
-- `PROJECT3-GENAI-TEXT2SQL-CHATBO.docx` — 18.8 MB
+- [4.PROMPT-ENGG-PROMPT-ENGG-1.docx](files/module4-prompt-engineering/MODULE4-PROMPT-ENGINEERING/2.PROMPT-ENGG/DRAWIO-ARCH-PICS/4.PROMPT-ENGG-PROMPT-ENGG-1.docx) — 20.7 KB — download
+- [CREATE-OPENAI-TAVILY-ACCOUNTS.docx](files/module4-prompt-engineering/MODULE4-PROMPT-ENGINEERING/CREATE-OPENAI-TAVILY-ACCOUNTS.docx) — 1.4 MB — download
+- [handynotes.docx](files/module4-prompt-engineering/MODULE4-PROMPT-ENGINEERING/PROJECT/handynotes.docx) — 14.5 KB — download
+- [PROJECT3-GENAI-TEXT2SQL-CHATBO.docx](files/module4-prompt-engineering/MODULE4-PROMPT-ENGINEERING/PROJECT/PROJECT3-GENAI-TEXT2SQL-CHATBO.docx) — 18.8 MB — download

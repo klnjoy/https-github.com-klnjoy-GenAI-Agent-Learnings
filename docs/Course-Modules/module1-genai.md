@@ -27,7 +27,7 @@ Source folder: `extracted/MODULE1-GENAI`
 
 ## Word documents (4)
 
-- `2. INTRO-GEN-AI.docx` — 193.9 KB
-- `5. INTRO-LLM.docx` — 10.2 KB
-- `1.AI-ML.drawio.docx` — 9.4 KB
-- `3.LLM.drawio.docx` — 9.4 KB
+- [2. INTRO-GEN-AI.docx](files/module1-genai/MODULE1-GENAI/2. INTRO-GEN-AI.docx) — 193.9 KB — download
+- [5. INTRO-LLM.docx](files/module1-genai/MODULE1-GENAI/5. INTRO-LLM.docx) — 10.2 KB — download
+- [1.AI-ML.drawio.docx](files/module1-genai/MODULE1-GENAI/ARCHITECTURE-PICS/1.AI-ML.drawio.docx) — 9.4 KB — download
+- [3.LLM.drawio.docx](files/module1-genai/MODULE1-GENAI/ARCHITECTURE-PICS/3.LLM.drawio.docx) — 9.4 KB — download

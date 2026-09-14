@@ -33,4 +33,4 @@ Source folder: `extracted/MODULE8.LANG-GRAPH`
 
 ## Word documents (1)
 
-- `LANGGRAPH-PROJECT1.docx` — 10.5 MB
+- [LANGGRAPH-PROJECT1.docx](files/module8-lang-graph/MODULE8.LANG-GRAPH/PROJECT/LANGGRAPH-PROJECT1.docx) — 10.5 MB — download

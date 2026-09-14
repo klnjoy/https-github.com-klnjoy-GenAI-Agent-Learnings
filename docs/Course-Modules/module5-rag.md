@@ -45,9 +45,9 @@ Source folder: `extracted/MODULE5-RAG`
 
 ## Word documents (6)
 
-- `1.RAG-PROBLEM.docx` — 95.6 KB
-- `4.INGESTION.docx` — 606.8 KB
-- `4.RAG-INGESTION.docx` — 6.6 KB
-- `5.RETRIEVAL.docx` — 576.4 KB
-- `6.TWO-STAGE-RAG.docx` — 36.8 KB
-- `8.CHUNKING-STRATEGIES.docx` — 48.4 KB
+- [1.RAG-PROBLEM.docx](files/module5-rag/MODULE5-RAG/1.RAG/DRAWIO-ARCH-DIAGRAMS/1.RAG-PROBLEM.docx) — 95.6 KB — download
+- [4.INGESTION.docx](files/module5-rag/MODULE5-RAG/1.RAG/DRAWIO-ARCH-DIAGRAMS/4.INGESTION.docx) — 606.8 KB — download
+- [4.RAG-INGESTION.docx](files/module5-rag/MODULE5-RAG/1.RAG/DRAWIO-ARCH-DIAGRAMS/4.RAG-INGESTION.docx) — 6.6 KB — download
+- [5.RETRIEVAL.docx](files/module5-rag/MODULE5-RAG/1.RAG/DRAWIO-ARCH-DIAGRAMS/5.RETRIEVAL.docx) — 576.4 KB — download
+- [6.TWO-STAGE-RAG.docx](files/module5-rag/MODULE5-RAG/2.PINECONE-RAG/DRAWIO-ARCH-PICS/6.TWO-STAGE-RAG.docx) — 36.8 KB — download
+- [8.CHUNKING-STRATEGIES.docx](files/module5-rag/MODULE5-RAG/2.PINECONE-RAG/DRAWIO-ARCH-PICS/8.CHUNKING-STRATEGIES.docx) — 48.4 KB — download

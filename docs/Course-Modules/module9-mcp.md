@@ -10,4 +10,4 @@ Source folder: `extracted/MODULE9-MCP`
 
 ## Word documents (1)
 
-- `TRAVEL-AGENT-LANGGRAPH-MCP.docx` — 9.7 MB
+- [TRAVEL-AGENT-LANGGRAPH-MCP.docx](files/module9-mcp/MODULE9-MCP/PROJECT/TRAVEL-AGENT-LANGGRAPH-MCP.docx) — 9.7 MB — download
