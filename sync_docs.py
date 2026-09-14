@@ -99,6 +99,17 @@ CATEGORIES: list[tuple[str, str, tuple[str, ...]]] = [
 CATEGORY_ICONS = {name: icon for name, icon, _ in CATEGORIES}
 CATEGORY_ICONS["More"] = ":material-dots-horizontal:"
 
+# Clean, ordered nav labels for specific pages (by dest filename). Lets us show
+# short readable labels in a deliberate order instead of long auto-titles.
+# (rel_dest basename -> (order, short label)).
+NAV_LABEL_OVERRIDES: dict[str, tuple[int, str]] = {
+    # Interview Guide — ordered concept-first, then role-specific.
+    "GenAI_Interview_QA.md": (1, "GenAI Interview Q&A"),
+    "Forward_Deployed_Engineer_Interview_QA.md": (2, "FDE Interview Q&A"),
+    "FDE_Coding_Interview_Prep.md": (3, "FDE Coding Prep"),
+    "Interview_Prep_Google_Cloud_Delivery_Lead.md": (4, "Cloud Delivery Lead Prep"),
+}
+
 
 def categorize(title: str, rel_dest: str) -> str:
     hay = f"{title} {rel_dest}".lower()
@@ -936,10 +947,17 @@ def write_index(md_catalog, modules) -> None:
                 _card(c_icon, c_disp, f"Projects/{c_slug}/index.md", c_desc)
                 for c_slug, c_disp, c_icon, c_desc, _f, _p in CODE_PROJECTS
             ]
-        cards += [
-            _card(":material-file-document-outline:", title, rel_dest)
-            for rel_dest, title in sorted(entries, key=lambda e: e[1].lower())
-        ]
+        def _card_key(e):
+            base = Path(e[0]).name
+            ov = NAV_LABEL_OVERRIDES.get(base)
+            return (0, ov[0], "") if ov else (1, 0, e[1].lower())
+
+        for rel_dest, title in sorted(entries, key=_card_key):
+            base = Path(rel_dest).name
+            ov = NAV_LABEL_OVERRIDES.get(base)
+            display_title = ov[1] if ov else title
+            cards.append(_card(":material-file-document-outline:",
+                               display_title, rel_dest))
         lines += _section(f"{icon} {name}", intros.get(name, ""), cards)
 
     (DOCS_DIR / "index.md").write_text("\n".join(lines), encoding="utf-8")
@@ -1012,8 +1030,18 @@ def write_nav(md_catalog, modules) -> None:
         if name == "Projects & POCs":
             for c_slug, c_disp, _ci, _cd, _f, _p in CODE_PROJECTS:
                 nav.append(f"      - {nav_label(c_disp)}: Projects/{c_slug}/index.md")
-        for rel_dest, title in sorted(entries, key=lambda e: e[1].lower()):
-            nav.append(f"      - {nav_label(title)}: {rel_dest}")
+        def _entry_key(e):
+            base = Path(e[0]).name
+            ov = NAV_LABEL_OVERRIDES.get(base)
+            # Overridden pages sort by their explicit order and come first;
+            # everything else falls back to alphabetical by title.
+            return (0, ov[0], "") if ov else (1, 0, e[1].lower())
+
+        for rel_dest, title in sorted(entries, key=_entry_key):
+            base = Path(rel_dest).name
+            ov = NAV_LABEL_OVERRIDES.get(base)
+            label = nav_label(ov[1]) if ov else nav_label(title)
+            nav.append(f"      - {label}: {rel_dest}")
 
     block = "# NAV:BEGIN\n" + "\n".join(nav) + "\n# NAV:END"
     text = MKDOCS_YML.read_text(encoding="utf-8")

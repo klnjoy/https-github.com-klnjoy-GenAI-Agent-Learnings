@@ -150,7 +150,6 @@ nav:
       - Reference Architectures: Enterprise/reference-architectures/index.md
   - Study Guide:
       - "Generative AI & Agentic AI — Complete Study Book": Personal-SourceCode/GenAI-AgenticAI-Complete-Study-Book.md
-      - "Generative AI & Agentic AI — Complete Study Book": GENAI-AGENTICAI/GenAI-AgenticAI-Complete-Study-Book.md
       - MODULE1-GENAI: Course-Modules/module1-genai.md
       - MODULE2-AWS-CLOUD: Course-Modules/module2-aws-cloud.md
       - MODULE3-PYTHON: Course-Modules/module3-python.md
@@ -163,14 +162,13 @@ nav:
       - MODULE10-BEDROCK-N-AGENTCORE: Course-Modules/module10-bedrock-n-agentcore.md
       - SUNDAY-SESSIONS: Course-Modules/sunday-sessions.md
   - Interview Guide:
-      - FDE / Solutions Engineer - Coding Interview Prep: Personal-SourceCode/FDE_Coding_Interview_Prep.md
-      - "Forward Deployed Engineer (FDE) — Interview Questions & Answers": Personal-SourceCode/Forward_Deployed_Engineer_Interview_QA.md
-      - "GenAI Interview Questions & Answers": Personal-SourceCode/GenAI_Interview_QA.md
-      - "Interview Preparation: Google Cloud Senior Delivery Lead / Technical Delivery Manager": Personal-SourceCode/Interview_Prep_Google_Cloud_Delivery_Lead.md
+      - "GenAI Interview Q&A": Personal-SourceCode/GenAI_Interview_QA.md
+      - "FDE Interview Q&A": Personal-SourceCode/Forward_Deployed_Engineer_Interview_QA.md
+      - FDE Coding Prep: Personal-SourceCode/FDE_Coding_Interview_Prep.md
+      - Cloud Delivery Lead Prep: Personal-SourceCode/Interview_Prep_Google_Cloud_Delivery_Lead.md
   - Projects & POCs:
       - Data Migration (Oracle to Snowflake): Projects/data-migration/index.md
       - "GenAI POC (LangChain & LangGraph)": Projects/genai-poc/index.md
       - "GenAI POC - LangChain & LangGraph Learning": Personal-SourceCode/genai-poc/README.md
       - GenAI Procurement Audit Bot — Architecture: Personal-SourceCode/genai-procurement-architecture.md
-      - GenAI SQL Assistant – Enterprise Architecture (Lambda + LLM + Chainlit + DB Executor): GENAI-AGENTICAI/MODULE4-PROMPT-ENGINEERING-20260805T215558Z-1-001/MODULE4-PROMPT-ENGINEERING/PROJECT/PROJECT3-PROMPT-ENGG-TEXT-TO-SQL/README.md
 # NAV:END
