@@ -107,7 +107,8 @@ NAV_LABEL_OVERRIDES: dict[str, tuple[int, str]] = {
     "GenAI_Interview_QA.md": (1, "GenAI Interview Q&A"),
     "Forward_Deployed_Engineer_Interview_QA.md": (2, "FDE Interview Q&A"),
     "FDE_Coding_Interview_Prep.md": (3, "FDE Coding Prep"),
-    "Interview_Prep_Google_Cloud_Delivery_Lead.md": (4, "Cloud Delivery Lead Prep"),
+    "FDE_LiveCoding_Scenarios_Prep.md": (4, "FDE Live-Coding & Scenarios"),
+    "Interview_Prep_Google_Cloud_Delivery_Lead.md": (5, "Cloud Delivery Lead Prep"),
 }
 
 
@@ -176,6 +177,8 @@ TOPICS: list[tuple[str, str, str, str]] = [
      "Serving, scaling, caching, cost, and lifecycle."),
     ("cost-optimization", "Cost Optimization", ":material-cash-multiple:",
      "Cut LLM cost: routing, caching, budgeting, right-sizing."),
+    ("trends", "Trends & Market (2026)", ":material-trending-up:",
+     "Current models, agent protocols, RAG patterns, and the hiring market."),
 ]
 
 # Authored project/case-study pages under content/Projects/<slug>/index.md
