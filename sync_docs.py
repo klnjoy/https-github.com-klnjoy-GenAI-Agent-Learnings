@@ -336,7 +336,12 @@ def clean_generated() -> None:
         if child.name in KEEP_IN_DOCS:
             continue
         if child == modules_dir and child.is_dir():
-            # Delete only the generated .md catalog pages; keep files/ subtree.
+            # If there's no external source to regenerate module pages from
+            # (e.g. the public CI build), preserve the committed Course-Modules
+            # pages entirely — deleting them would lose content we can't rebuild.
+            if not EXTRACTED_DIR.exists():
+                continue
+            # Otherwise delete only the generated .md catalog pages; keep files/.
             for sub in child.iterdir():
                 if sub.name == "files":
                     continue
@@ -462,6 +467,27 @@ def _convert_notebook(src: Path, dest_html: Path) -> bool:
         return False
 
 
+def _discover_committed_modules() -> list[tuple[str, str, int, str | None]]:
+    """Find module catalog pages already present in docs/Course-Modules/*.md
+    (committed to the repo). Used when the external source isn't available so
+    the modules still show up in nav / landing page and get published."""
+    modules_dir = DOCS_DIR / MODULES_SECTION
+    if not modules_dir.exists():
+        return []
+    files_root = modules_dir / "files"
+    result: list[tuple[str, str, int, str | None]] = []
+    for md in sorted(modules_dir.glob("*.md")):
+        slug = md.stem
+        title = first_heading(md) or slug.upper()
+        # Count openable files under files/<slug>/ if present.
+        slug_files = files_root / slug
+        count = (sum(1 for f in slug_files.rglob("*") if f.is_file())
+                 if slug_files.exists() else 0)
+        result.append((title, f"{MODULES_SECTION}/{slug}.md", count,
+                       topic_for_module(title)))
+    return result
+
+
 def build_module_pages() -> list[tuple[str, str, int, str | None]]:
     """One catalog page per extracted module, with openable file links.
 
@@ -471,8 +497,12 @@ def build_module_pages() -> list[tuple[str, str, int, str | None]]:
     Returns (title, rel_dest, file_count, topic_slug_or_None).
     """
     if not EXTRACTED_DIR.exists():
-        print(f"WARNING: extracted folder not found: {EXTRACTED_DIR}")
-        return []
+        # No external module source (e.g. the public CI build). If module
+        # catalog pages were committed to the repo previously, discover and
+        # reuse them so the modules still appear in nav and get published.
+        print(f"NOTE: extracted folder not found ({EXTRACTED_DIR}); "
+              "using committed Course-Modules pages if present.")
+        return _discover_committed_modules()
 
     modules_dir = DOCS_DIR / MODULES_SECTION
     files_root = modules_dir / "files"

@@ -148,6 +148,19 @@ nav:
       - "Monitoring & Observability": Enterprise/monitoring/index.md
       - Compliance: Enterprise/compliance/index.md
       - Reference Architectures: Enterprise/reference-architectures/index.md
+  - Study Guide:
+      - "Generative AI & Agentic AI — Complete Study Book": Personal-SourceCode/GenAI-AgenticAI-Complete-Study-Book.md
+      - MODULE1-GENAI: Course-Modules/module1-genai.md
+      - MODULE2-AWS-CLOUD: Course-Modules/module2-aws-cloud.md
+      - MODULE3-PYTHON: Course-Modules/module3-python.md
+      - MODULE4-PROMPT-ENGINEERING: Course-Modules/module4-prompt-engineering.md
+      - MODULE5-RAG: Course-Modules/module5-rag.md
+      - MODULE6-LANGCHAIN: Course-Modules/module6-langchain.md
+      - MODULE7-GRAPHDB: Course-Modules/module7-graphdb.md
+      - MODULE8.LANG-GRAPH: Course-Modules/module8-lang-graph.md
+      - MODULE9-MCP: Course-Modules/module9-mcp.md
+      - MODULE10-BEDROCK-N-AGENTCORE: Course-Modules/module10-bedrock-n-agentcore.md
+      - SUNDAY-SESSIONS: Course-Modules/sunday-sessions.md
   - Interview Guide:
       - FDE / Solutions Engineer - Coding Interview Prep: Personal-SourceCode/FDE_Coding_Interview_Prep.md
       - "Forward Deployed Engineer (FDE) — Interview Questions & Answers": Personal-SourceCode/Forward_Deployed_Engineer_Interview_QA.md

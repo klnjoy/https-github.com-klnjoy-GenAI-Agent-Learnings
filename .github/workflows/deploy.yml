@@ -42,6 +42,11 @@ jobs:
       - name: Build site
         run: mkdocs build --clean
 
+      - name: Copy course-module files into the built site
+        # finalize_site.py tops up site/ with the heavy module files (PDFs,
+        # notebooks, diagrams) that mkdocs excludes from its own build.
+        run: python finalize_site.py
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
