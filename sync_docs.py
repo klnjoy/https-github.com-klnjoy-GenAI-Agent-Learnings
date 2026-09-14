@@ -69,6 +69,9 @@ EXCLUDE_DIR_NAMES = {
     "content",               # copied separately, verbatim
     "aws-transfer-family",   # setup/infra — not GenAI, excluded
     "data-strategy-website", # marketing/LinkedIn content — not GenAI study
+    "genai-poc",             # rendered fully by build_code_project_pages();
+                             # skip generic *.md sync to avoid a duplicate
+                             # README-only "…Learning" page in the nav.
 }
 
 # Module folder-name fragments to skip entirely.

@@ -170,6 +170,5 @@ nav:
   - Projects & POCs:
       - Data Migration (Oracle to Snowflake): Projects/data-migration/index.md
       - "GenAI POC (LangChain & LangGraph)": Projects/genai-poc/index.md
-      - "GenAI POC - LangChain & LangGraph Learning": Personal-SourceCode/genai-poc/README.md
       - GenAI Procurement Audit Bot — Architecture: Personal-SourceCode/genai-procurement-architecture.md
 # NAV:END
