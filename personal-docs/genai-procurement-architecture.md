@@ -248,3 +248,146 @@ flowchart TB
 
 > Astra is illustrative — a generalized multi-agent design, not tied to any
 > specific internal system.
+---
+
+# Snowflake-native version — Cortex + Snowflake Intelligence
+
+The same multi-agent idea as **Astra**, but built entirely on Snowflake so the
+data never leaves the platform. **Snowflake Intelligence** is the supervisor,
+**Cortex Analyst** is the Data Agent (structured PO data → SQL), and **Cortex
+Search** is the Document Agent (contracts, attachments, memos → retrieval). The
+LLM reasoning runs in-account via **Cortex LLM functions** (`AI_COMPLETE` /
+`SNOWFLAKE.CORTEX.COMPLETE`), and access is enforced by the same RBAC you already
+use on the tables.
+
+```mermaid
+flowchart TB
+    U([User / analyst]) --> SI[🧠❄️ Snowflake Intelligence<br/>supervisor agent]
+
+    SI --> CA[📊 Cortex Analyst<br/>Data Agent]
+    SI --> CS[🔎 Cortex Search<br/>Document Agent]
+    SI --> RULE[✅ Compliance tool<br/>audit rules + AI_COMPLETE]
+
+    CA --> SEM[(Semantic model<br/>YAML: PO tables + metrics)]
+    SEM --> WH[(❄️ Warehouse<br/>PO line + header)]
+    CS --> SVC[(Cortex Search service<br/>chunked docs + embeddings)]
+    SVC --> DOCS[(📄 Contracts / attachments<br/>parsed to a table)]
+    RULE --> POL[(Policy / rules table)]
+
+    CA & CS & RULE --> SI
+    SI --> GRD[Cortex Guard + RBAC + masking]
+    GRD --> ANS([Grounded answer + citations])
+
+    classDef sup fill:#EDE7F6,stroke:#5E35B1
+    classDef tool fill:#E1F5FE,stroke:#0277BD
+    classDef data fill:#E3F2FD,stroke:#1565C0
+    class SI sup
+    class CA,CS,RULE tool
+    class SEM,WH,SVC,DOCS,POL data
+```
+
+## Astra agent → Snowflake feature
+
+| Astra (generic multi-agent) | Snowflake-native equivalent | What it does |
+|-----------------------------|-----------------------------|--------------|
+| **Supervisor Agent** | **Snowflake Intelligence** (Cortex Agents) | Plans, routes to tools, composes the cited answer |
+| **Data Agent** (warehouse SQL) | **Cortex Analyst** | Natural language → SQL over a **semantic model** of the PO tables |
+| **Document Agent** (vector RAG) | **Cortex Search** | Hybrid (vector + keyword) retrieval over chunked contracts/attachments |
+| **Compliance Agent** (rules + LLM) | **Cortex LLM functions** (`AI_COMPLETE`) + rules table | Runs the 9 audit checks as structured prompts, in-database |
+| **API Agent** (live REST) | **External Access Integration** / stored proc | Optional: pull live PO/vendor data when the warehouse is stale |
+| Vector store | **Cortex Search service** | Managed embeddings + index — no separate vector DB to run |
+| Guardrails | **Cortex Guard** + **RBAC** + **masking policies** | Safety on output; row/column access enforced by the platform |
+| Tracing / eval | **AI Observability** (traces + evaluations) | Trace every agent run; score answers against an eval set |
+
+## What each piece looks like
+
+**Cortex Analyst (Data Agent)** answers numeric/status questions from a
+**semantic model** — a YAML file that describes the PO tables, the joins, and the
+business metrics, so analysts ask in plain English and get verified SQL back:
+
+```yaml
+# po_semantic_model.yaml (excerpt)
+tables:
+  - name: purchase_orders
+    base_table: {database: PROCUREMENT, schema: CURATED, table: PO_HEADER}
+    dimensions:
+      - name: po_status
+        expr: status
+      - name: sole_source_flag
+        expr: is_sole_source
+    facts:
+      - name: po_amount
+        expr: total_amount
+    time_dimensions:
+      - name: created_date
+        expr: created_ts
+verified_queries:
+  - name: open sole-source POs this quarter
+    sql: >
+      SELECT po_number, total_amount FROM PROCUREMENT.CURATED.PO_HEADER
+      WHERE is_sole_source = TRUE AND status = 'OPEN'
+```
+
+**Cortex Search (Document Agent)** indexes the parsed attachments/contracts so
+the supervisor can retrieve grounding text with citations:
+
+```sql
+CREATE OR REPLACE CORTEX SEARCH SERVICE po_docs_search
+  ON chunk_text
+  ATTRIBUTES po_number, doc_type
+  WAREHOUSE = search_wh
+  TARGET_LAG = '1 hour'
+  AS (
+    SELECT chunk_text, po_number, doc_type
+    FROM PROCUREMENT.CURATED.PO_DOC_CHUNKS
+  );
+```
+
+**Compliance check (in-database LLM)** runs each of the 9 audit checks with the
+same "structured, deterministic, never-guess" prompt from the batch bot — but as
+a SQL function call instead of a Lambda + Bedrock round trip:
+
+```sql
+SELECT
+  po_number,
+  AI_COMPLETE(
+    'claude-3-5-sonnet',
+    'You are a procurement compliance auditor. Answer ONLY from the data. '
+    || 'If information is missing, return NA — never guess. '
+    || 'Check: is a business justification provided and adequate? '
+    || 'Return JSON only {"result":"Pass|Fail|NA","reason":"<one sentence>"}. '
+    || 'PO data: ' || TO_VARCHAR(OBJECT_CONSTRUCT(*))
+  ) AS justification_verdict
+FROM PROCUREMENT.CURATED.PO_LINE;
+```
+
+## Why the Snowflake-native version
+
+- **Data never leaves the account** — Analyst, Search, and the LLM calls all run
+  inside Snowflake; no data egress to an external inference endpoint.
+- **One security model** — the agent inherits **RBAC, row-access, and masking
+  policies** already on the PO tables. Least privilege comes for free instead of
+  being re-implemented per tool.
+- **Less to operate** — no queue, no Lambda packaging, no separate vector DB.
+  Cortex Search manages the embeddings + index; Analyst manages the SQL
+  generation from the semantic model.
+- **Grounded + verifiable** — Analyst returns the **SQL it ran** and Search
+  returns **source chunks**, so every answer is auditable — the same grounding
+  discipline as the batch bot, enforced by the platform.
+- **Governed reasoning** — Cortex Guard plus a deterministic, JSON-only,
+  "return NA if missing" prompt keeps compliance verdicts safe and parseable.
+
+## Batch bot vs Astra vs Snowflake-native
+
+| | Procurement Audit Bot | Astra (multi-agent) | Snowflake-native |
+|-|----------------------|---------------------|------------------|
+| Supervisor | None (fixed pipeline) | Custom supervisor agent | **Snowflake Intelligence** |
+| Structured data | Warehouse query in Lambda | Data Agent + SQL tool | **Cortex Analyst** (semantic model) |
+| Documents | Object storage read | Vector store + RAG | **Cortex Search** service |
+| LLM reasoning | Bedrock (external VPC endpoint) | Bedrock | **Cortex LLM functions** (in-account) |
+| Infra to run | EventBridge, SQS, 3 Lambdas, NoSQL | Agents + vector DB + API | Mostly SQL objects + a semantic model |
+| Data movement | Leaves account for inference | Leaves account for inference | **Stays in Snowflake** |
+| Governance | IAM + VPC | IAM + app-level | **Snowflake RBAC + masking + Guard** |
+
+> Illustrative and generalized — feature names follow Snowflake Cortex /
+> Snowflake Intelligence; no internal system or account specifics implied.
