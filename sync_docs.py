@@ -113,15 +113,22 @@ NAV_LABEL_OVERRIDES: dict[str, tuple[int, str]] = {
     "FDE_Coding_Interview_Prep.md": (3, "FDE Coding Prep"),
     "FDE_LiveCoding_Scenarios_Prep.md": (4, "FDE Live-Coding & Scenarios"),
     "Interview_Prep_Google_Cloud_Delivery_Lead.md": (5, "Cloud Delivery Lead Prep"),
+    # Landing page first.
+    "Interview_Guide_Overview.md": (0, "Overview & Study Path"),
     # Per-technology / role advanced & scenario-based Q&A.
     "AI_Engineer_Interview_QA.md": (6, "AI Engineer Interview Q&A"),
     "Agents_Interview_QA.md": (7, "Agentic AI / Agents Interview Q&A"),
-    "Snowflake_Interview_QA.md": (8, "Snowflake Interview Q&A"),
-    "Databricks_Interview_QA.md": (9, "Databricks Interview Q&A"),
-    "dbt_Interview_QA.md": (10, "dbt Interview Q&A"),
-    "Python_Interview_QA.md": (11, "Python Interview Q&A"),
-    "MCP_Interview_QA.md": (12, "MCP Interview Q&A"),
-    "DevOps_Interview_QA.md": (13, "DevOps Interview Q&A"),
+    "LangChain_LangGraph_Interview_QA.md": (8, "LangChain / LangGraph Interview Q&A"),
+    "MCP_Interview_QA.md": (9, "MCP Interview Q&A"),
+    "SQL_Interview_QA.md": (10, "SQL Interview Q&A"),
+    "DataEngineering_Interview_QA.md": (11, "Data Engineering Interview Q&A"),
+    "Snowflake_Interview_QA.md": (12, "Snowflake Interview Q&A"),
+    "Databricks_Interview_QA.md": (13, "Databricks Interview Q&A"),
+    "dbt_Interview_QA.md": (14, "dbt Interview Q&A"),
+    "Python_Interview_QA.md": (15, "Python Interview Q&A"),
+    "AWS_Interview_QA.md": (16, "AWS Interview Q&A"),
+    "DevOps_Interview_QA.md": (17, "DevOps Interview Q&A"),
+    "Behavioral_STAR_Interview_QA.md": (18, "Behavioral / STAR Interview Q&A"),
 }
 
 

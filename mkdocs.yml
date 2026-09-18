@@ -165,6 +165,7 @@ nav:
       - MODULE10-BEDROCK-N-AGENTCORE: Course-Modules/module10-bedrock-n-agentcore.md
       - SUNDAY-SESSIONS: Course-Modules/sunday-sessions.md
   - Interview Guide:
+      - "Overview & Study Path": Personal-SourceCode/Interview_Guide_Overview.md
       - "GenAI Interview Q&A": Personal-SourceCode/GenAI_Interview_QA.md
       - "FDE Interview Q&A": Personal-SourceCode/Forward_Deployed_Engineer_Interview_QA.md
       - FDE Coding Prep: Personal-SourceCode/FDE_Coding_Interview_Prep.md
@@ -172,12 +173,17 @@ nav:
       - Cloud Delivery Lead Prep: Personal-SourceCode/Interview_Prep_Google_Cloud_Delivery_Lead.md
       - "AI Engineer Interview Q&A": Personal-SourceCode/AI_Engineer_Interview_QA.md
       - "Agentic AI / Agents Interview Q&A": Personal-SourceCode/Agents_Interview_QA.md
+      - "LangChain / LangGraph Interview Q&A": Personal-SourceCode/LangChain_LangGraph_Interview_QA.md
+      - "MCP Interview Q&A": Personal-SourceCode/MCP_Interview_QA.md
+      - "SQL Interview Q&A": Personal-SourceCode/SQL_Interview_QA.md
+      - "Data Engineering Interview Q&A": Personal-SourceCode/DataEngineering_Interview_QA.md
       - "Snowflake Interview Q&A": Personal-SourceCode/Snowflake_Interview_QA.md
       - "Databricks Interview Q&A": Personal-SourceCode/Databricks_Interview_QA.md
       - "dbt Interview Q&A": Personal-SourceCode/dbt_Interview_QA.md
       - "Python Interview Q&A": Personal-SourceCode/Python_Interview_QA.md
-      - "MCP Interview Q&A": Personal-SourceCode/MCP_Interview_QA.md
+      - "AWS Interview Q&A": Personal-SourceCode/AWS_Interview_QA.md
       - "DevOps Interview Q&A": Personal-SourceCode/DevOps_Interview_QA.md
+      - "Behavioral / STAR Interview Q&A": Personal-SourceCode/Behavioral_STAR_Interview_QA.md
   - Projects & POCs:
       - Data Migration (Oracle to Snowflake): Projects/data-migration/index.md
       - "GenAI POC (LangChain & LangGraph)": Projects/genai-poc/index.md
