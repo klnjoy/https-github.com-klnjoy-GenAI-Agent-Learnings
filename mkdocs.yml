@@ -85,6 +85,8 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.details
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -169,6 +171,7 @@ nav:
       - "FDE Live-Coding & Scenarios": Personal-SourceCode/FDE_LiveCoding_Scenarios_Prep.md
       - Cloud Delivery Lead Prep: Personal-SourceCode/Interview_Prep_Google_Cloud_Delivery_Lead.md
       - "AI Engineer Interview Q&A": Personal-SourceCode/AI_Engineer_Interview_QA.md
+      - "Agentic AI / Agents Interview Q&A": Personal-SourceCode/Agents_Interview_QA.md
       - "Snowflake Interview Q&A": Personal-SourceCode/Snowflake_Interview_QA.md
       - "Databricks Interview Q&A": Personal-SourceCode/Databricks_Interview_QA.md
       - "dbt Interview Q&A": Personal-SourceCode/dbt_Interview_QA.md

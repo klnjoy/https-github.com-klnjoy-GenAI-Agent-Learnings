@@ -1,3 +1,7 @@
+---
+icon: material/account-supervisor
+---
+
 # Interview Preparation: Google Cloud Senior Delivery Lead / Technical Delivery Manager
 
 ---

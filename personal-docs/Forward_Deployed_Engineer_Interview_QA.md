@@ -1,3 +1,7 @@
+---
+icon: material/account-tie
+---
+
 # Forward Deployed Engineer (FDE) — Interview Questions & Answers
 
 ## About the Role

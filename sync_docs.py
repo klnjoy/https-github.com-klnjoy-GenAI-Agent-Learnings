@@ -113,14 +113,15 @@ NAV_LABEL_OVERRIDES: dict[str, tuple[int, str]] = {
     "FDE_Coding_Interview_Prep.md": (3, "FDE Coding Prep"),
     "FDE_LiveCoding_Scenarios_Prep.md": (4, "FDE Live-Coding & Scenarios"),
     "Interview_Prep_Google_Cloud_Delivery_Lead.md": (5, "Cloud Delivery Lead Prep"),
-    # Per-technology advanced / scenario-based Q&A.
+    # Per-technology / role advanced & scenario-based Q&A.
     "AI_Engineer_Interview_QA.md": (6, "AI Engineer Interview Q&A"),
-    "Snowflake_Interview_QA.md": (7, "Snowflake Interview Q&A"),
-    "Databricks_Interview_QA.md": (8, "Databricks Interview Q&A"),
-    "dbt_Interview_QA.md": (9, "dbt Interview Q&A"),
-    "Python_Interview_QA.md": (10, "Python Interview Q&A"),
-    "MCP_Interview_QA.md": (11, "MCP Interview Q&A"),
-    "DevOps_Interview_QA.md": (12, "DevOps Interview Q&A"),
+    "Agents_Interview_QA.md": (7, "Agentic AI / Agents Interview Q&A"),
+    "Snowflake_Interview_QA.md": (8, "Snowflake Interview Q&A"),
+    "Databricks_Interview_QA.md": (9, "Databricks Interview Q&A"),
+    "dbt_Interview_QA.md": (10, "dbt Interview Q&A"),
+    "Python_Interview_QA.md": (11, "Python Interview Q&A"),
+    "MCP_Interview_QA.md": (12, "MCP Interview Q&A"),
+    "DevOps_Interview_QA.md": (13, "DevOps Interview Q&A"),
 }
 
 

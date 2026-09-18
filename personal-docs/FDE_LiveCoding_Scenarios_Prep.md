@@ -1,3 +1,7 @@
+---
+icon: material/laptop
+---
+
 # FDE Live-Coding & Real-Time Scenarios — Prep & Confidence
 
 A focused playbook for the **hard parts** of Forward Deployed Engineer loops:

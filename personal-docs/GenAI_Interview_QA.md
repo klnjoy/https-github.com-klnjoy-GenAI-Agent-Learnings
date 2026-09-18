@@ -1,3 +1,7 @@
+---
+icon: material/robot-happy
+---
+
 # GenAI Interview Questions & Answers
 
 ---

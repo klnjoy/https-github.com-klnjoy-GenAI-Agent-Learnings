@@ -1,8 +1,35 @@
+---
+icon: material/snowflake
+---
+
 # Snowflake Interview Q&A — Advanced & Scenario-Based
 
 Senior-level, real-world Snowflake questions: performance forensics, cost
 control, architecture trade-offs, and the failures that actually happen in
-production. Answers are concise talking points you can expand on.
+production. Study at a glance with the talking points, then open each question
+for depth.
+
+!!! tip "How to use this page"
+    Skim the **60-second talking points** and **rapid-fire** first for recall,
+    then drill into the collapsible questions. Finish with the **self-quiz** at
+    the bottom — if you can answer those out loud, you're interview-ready.
+    See the deep-dive: [Technologies → Snowflake](../Technologies/snowflake/index.md).
+
+---
+
+## Study checklist
+
+Can you explain each of these without notes?
+
+- [ ] Why storage/compute separation matters and what it enables (cloning, sharing, scaling)
+- [ ] Micro-partitions, pruning, and why there are no manual indexes
+- [ ] How to read a Query Profile and the four common bottlenecks
+- [ ] Scale **up** vs **out**, and when each applies
+- [ ] Time Travel vs Fail-safe vs zero-copy clone
+- [ ] Streams + Tasks vs Dynamic Tables for CDC/incremental
+- [ ] Tag-based masking + row access policies for governance at scale
+- [ ] Cortex Analyst vs Cortex Search vs LLM functions
+- [ ] How to find and stop runaway cost
 
 ---
 
@@ -18,6 +45,33 @@ Crisp framings to sound fluent, not memorized:
   that can't match. No manual indexes.
 - **"Cortex is governed GenAI with no data egress."** LLM functions, Cortex
   Search, and Cortex Analyst run inside the RBAC/masking/tag boundary.
+
+---
+
+## Core concepts — simple, then the nuance
+
+??? note "Architecture: explain it simply, then go deep"
+    **Simple:** Snowflake has three layers — a **brain** (cloud services:
+    auth, metadata, optimizer), **muscles** (virtual warehouses that compute), and
+    a **shared pantry** (centralized storage). They scale independently.
+
+    **The nuance:** Because compute is separate from storage, many warehouses read
+    the *same* micro-partitions with no contention, you pay per-second only when a
+    warehouse runs, and you can clone data with zero copy (metadata pointers). The
+    cloud services layer is multi-tenant and you never size it. This is *the*
+    differentiator versus shared-nothing MPP databases where storage and compute
+    are welded together.
+
+??? note "Micro-partitions & pruning: simple, then deep"
+    **Simple:** Data is auto-split into small columnar chunks. Each chunk records
+    the min/max of every column, so the optimizer skips chunks that can't contain
+    your rows. That skipping *is* the index.
+
+    **The nuance:** Micro-partitions are ~50–500 MB uncompressed (~16 MB
+    compressed), immutable, and created in load order. Pruning effectiveness
+    depends on how well your filter columns correlate with load order — that's why
+    **clustering** (or loading in natural order) matters for big tables. Pruning is
+    visible in the Query Profile as `partitions scanned` vs `partitions total`.
 
 ---
 
@@ -61,6 +115,33 @@ Crisp framings to sound fluent, not memorized:
       AUTO_SUSPEND = 60 AUTO_RESUME = TRUE;
     ```
 
+=== "Read the Query Profile"
+
+    ```text
+    Most expensive node? →
+      TableScan with low pruning     → clustering / better filter
+      Sort/Join/Aggregate + spill    → size up the warehouse
+      Join output >> input rows      → exploding join, fix grain/keys
+      Cartesian / no join key        → missing/incorrect ON condition
+    ```
+
+!!! example "Worked scenario: dashboard got 10x slower after data growth"
+    **Symptom:** A BI dashboard was snappy, data grew 10x, now it times out.
+
+    **Reasoning:** Open the Query Profile.
+    1. **TableScan shows `partitions_scanned` ≈ `partitions_total`** → almost no
+       pruning. The filter column isn't aligned to load order. → add a cluster key
+       on the filter column (e.g. `event_date`) or reload sorted.
+    2. **Spill to remote storage** on a sort/aggregate → warehouse is memory-
+       starved. → size up (M→L) or reduce the working set.
+    3. **Join output rows >> inputs** → grain bug (duplicate keys). → dedupe before
+       joining, verify the join key uniqueness.
+    4. Confirm the **result cache** isn't defeated by `CURRENT_TIMESTAMP()`.
+
+    **Outcome you'd state:** "I'd cluster on the date filter, right-size the
+    warehouse to stop spill, and fix the join grain — then remeasure from
+    `QUERY_HISTORY`."
+
 ??? question "A dashboard was fast, then data grew 10x and it crawled. Walk me through it."
     Open the **Query Profile**. Four usual suspects: (1) **full scans** → add a
     cluster key aligned to filters or fix load order; (2) **spilling to
@@ -81,6 +162,20 @@ Crisp framings to sound fluent, not memorized:
     cost (a background, credit-consuming service) outweighs read savings. Clustering
     pays off on large tables (hundreds of GB+) queried with selective predicates on
     the cluster key. Measure with clustering info before and after.
+
+??? question "Scale up vs scale out — give a concrete example of each."
+    **Up** (bigger warehouse): a single nightly transformation joins two huge
+    tables and spills — move XS→L so it has more memory/CPU per query. **Out**
+    (multi-cluster): a BI dashboard is hit by 200 analysts at 9am and queries queue
+    — set `MAX_CLUSTER_COUNT` so Snowflake spins extra clusters for concurrency,
+    then scales back. Up = one heavy query; out = many concurrent queries.
+
+??? question "What is the result cache and how is it invalidated?"
+    Snowflake caches query *results* for 24h. A byte-identical query returns
+    instantly with **zero compute** if the underlying data hasn't changed and the
+    query is deterministic. It's invalidated by any DML on the referenced tables or
+    by non-deterministic functions (`CURRENT_TIMESTAMP()`, `RANDOM()`) in the query.
+    There's also a warehouse-local **data cache** (SSD) that speeds repeated scans.
 
 ---
 
@@ -113,6 +208,13 @@ Crisp framings to sound fluent, not memorized:
     references. Check `TABLE_STORAGE_METRICS` for `time_travel_bytes` and
     `failsafe_bytes`; reduce `DATA_RETENTION_TIME_IN_DAYS` on high-churn transient
     tables, and use **transient/temporary** tables for staging (no Fail-safe).
+
+??? question "What are the biggest 'silent' cost drivers people miss?"
+    Idle warehouses with high auto-suspend; multi-cluster max set too high; frequent
+    `SELECT *` from BI tools scanning all columns; over-clustering write-heavy
+    tables (reclustering credits); Snowpipe on tiny files (per-file overhead); and
+    long Time Travel retention on churny tables. Attribute cost with warehouse-per-
+    workload + resource monitors so you can see who spends what.
 
 ---
 
@@ -147,6 +249,15 @@ Crisp framings to sound fluent, not memorized:
         ROW_NUMBER() OVER (PARTITION BY id ORDER BY updated DESC) = 1;
     ```
 
+=== "Safe schema swap"
+
+    ```sql
+    CREATE TABLE orders_v2 CLONE orders;   -- instant, zero-copy
+    -- apply/validate changes on orders_v2 ...
+    ALTER TABLE orders SWAP WITH orders_v2; -- atomic cutover
+    -- rollback available via Time Travel / UNDROP
+    ```
+
 ??? question "Streams + Tasks vs Dynamic Tables — when do you pick which?"
     **Streams + Tasks** give imperative control: custom MERGE logic, multi-step
     DAGs, side effects. **Dynamic Tables** are declarative — you define the target
@@ -168,6 +279,21 @@ Crisp framings to sound fluent, not memorized:
     changes on the clone, then swap with `ALTER TABLE ... SWAP WITH`. Time Travel
     gives you an instant rollback (`AT`/`BEFORE` or `UNDROP`). This avoids long
     locks and gives a tested cutover.
+
+??? question "What's the difference between a materialized view and a dynamic table?"
+    A **materialized view** precomputes and auto-maintains results for a *single*
+    base table with limits (no joins in many cases). A **dynamic table** can
+    express multi-table transformations (joins, aggregations) and refreshes
+    incrementally toward a `TARGET_LAG` you set — effectively a declarative
+    pipeline. Use MVs for simple single-table acceleration; dynamic tables for
+    pipeline-style transforms.
+
+??? question "How would you load data — batch and streaming?"
+    Batch: `COPY INTO` from a **stage** (S3/Azure/GCS) with a file format.
+    Continuous: **Snowpipe** (auto-ingest on file arrival) for near-real-time
+    micro-batches; **Snowpipe Streaming** for low-latency row-level ingestion.
+    Query files in place with **external tables** when you don't want to load. Pick
+    based on latency need and file cadence; avoid Snowpipe on many tiny files.
 
 ---
 
@@ -192,6 +318,13 @@ Crisp framings to sound fluent, not memorized:
     account — or a **reader account** if they're not on Snowflake. They query your
     micro-partitions live; you pay storage, they pay their own compute. No ETL, no
     stale copies. Use **secure views** to expose only the rows/columns intended.
+
+??? question "Explain RBAC best practices in Snowflake."
+    Grant privileges to **roles**, not users; build a **role hierarchy** (functional
+    roles inherit access roles); follow least privilege; use separate roles per
+    environment/workload; and avoid using `ACCOUNTADMIN` for daily work. Ownership
+    and future grants (`GRANT ... ON FUTURE`) keep new objects governed
+    automatically.
 
 ---
 
@@ -223,6 +356,8 @@ Crisp framings to sound fluent, not memorized:
 | Transient vs permanent table? | Transient has no Fail-safe → cheaper for staging |
 | `COPY` vs Snowpipe? | `COPY` = bulk batch; Snowpipe = continuous, auto-triggered micro-batches |
 | Materialized view vs Dynamic Table? | MV = single-table precompute; DT = multi-table declarative pipeline with lag |
+| Zero-copy clone cost? | Metadata-only; storage charged only on divergence |
+| How to see cost by warehouse? | `WAREHOUSE_METERING_HISTORY` in ACCOUNT_USAGE |
 
 ---
 
@@ -234,3 +369,23 @@ Crisp framings to sound fluent, not memorized:
 - Leaving `AUTO_SUSPEND` high so warehouses burn idle credits.
 - Treating Time Travel as backup (Fail-safe is disaster-only, not self-serve).
 - Assuming Cortex sends data to an external API (it runs in-account).
+
+---
+
+## Self-quiz
+
+Answer out loud; if you hesitate, reread that section.
+
+1. Walk through diagnosing a slow query from `QUERY_HISTORY` to fix.
+2. A warehouse is burning credits overnight — how do you confirm and stop it?
+3. When would you choose a Dynamic Table over Streams + Tasks?
+4. How do you protect PII across 500 tables without editing each one?
+5. Explain zero-copy clone and one production use for it.
+6. Why does clustering help some tables and hurt others?
+7. How do you share live data with a non-Snowflake partner?
+8. What keeps Cortex data inside the governance boundary?
+
+!!! note "Cross-links"
+    Deep dive: [Technologies → Snowflake](../Technologies/snowflake/index.md) ·
+    Related: [RAG](../GenAI-Topics/rag/index.md) ·
+    [AI Engineer Interview Q&A](AI_Engineer_Interview_QA.md)

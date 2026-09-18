@@ -1,3 +1,7 @@
+---
+icon: material/book-open-page-variant
+---
+
 # 📘 Generative AI & Agentic AI — Complete Study Book
 
 ## DVS Gen AI Program — Comprehensive Reference Guide

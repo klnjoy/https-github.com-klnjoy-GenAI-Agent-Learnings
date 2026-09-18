@@ -1,3 +1,7 @@
+---
+icon: material/code-braces
+---
+
 # FDE / Solutions Engineer - Coding Interview Prep
 ## SQL + Python + Snowflake Cortex + System Design
 
