@@ -702,3 +702,10 @@
   background: linear-gradient(135deg, var(--kb-grad-1), var(--kb-grad-2));
   color: #fff; font-size: 0.72rem; font-weight: 700;
 }
+
+/* Hide the permalink ¶ on the top page title (h1) — it looks like a stray glyph
+   next to the brand/hero heading. Section headings (h2+) keep theirs for
+   shareable anchors. */
+.md-typeset h1 .headerlink { display: none; }
+/* Also hide it inside branded hero blocks regardless of heading level. */
+.ig-hero .headerlink { display: none; }
