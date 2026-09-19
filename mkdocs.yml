@@ -190,6 +190,8 @@ nav:
       - "AWS Interview Q&A": Personal-SourceCode/AWS_Interview_QA.md
       - "DevOps Interview Q&A": Personal-SourceCode/DevOps_Interview_QA.md
       - "Behavioral / STAR Interview Q&A": Personal-SourceCode/Behavioral_STAR_Interview_QA.md
+  - Practice Labs:
+      - "Scenario Drills (Data & GenAI)": Personal-SourceCode/Lab_Scenario_Drills.md
   - Projects & POCs:
       - Data Migration (Oracle to Snowflake): Projects/data-migration/index.md
       - "GenAI POC (LangChain & LangGraph)": Projects/genai-poc/index.md

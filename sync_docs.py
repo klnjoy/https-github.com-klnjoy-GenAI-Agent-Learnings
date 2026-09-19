@@ -83,7 +83,7 @@ EXCLUDE_FILE_NAMES: set[str] = set()
 
 # Files copied into docs/ but kept OUT of the auto-generated nav catalog because
 # they're placed explicitly elsewhere in the nav (avoids duplicate entries).
-COPY_NO_CATALOG: set[str] = {"Pricing.md"}
+COPY_NO_CATALOG: set[str] = {"Pricing.md", "Lab_Scenario_Drills.md"}
 
 
 # ---------------------------------------------------------------------------
@@ -1075,6 +1075,18 @@ def write_nav(md_catalog, modules) -> None:
             ov = NAV_LABEL_OVERRIDES.get(base)
             label = nav_label(ov[1]) if ov else nav_label(title)
             nav.append(f"      - {label}: {rel_dest}")
+
+    # Practice Labs — hands-on "doing" content (scenarios, live-coding, hackathons).
+    # Placed explicitly (its pages are kept out of the auto-catalog via
+    # COPY_NO_CATALOG so they aren't double-listed).
+    lab_pages = [
+        ("Scenario Drills (Data & GenAI)", "Personal-SourceCode/Lab_Scenario_Drills.md"),
+    ]
+    existing_labs = [(t, p) for (t, p) in lab_pages if (DOCS_DIR / p).exists()]
+    if existing_labs:
+        nav.append("  - Practice Labs:")
+        for title, rel in existing_labs:
+            nav.append(f"      - {nav_label(title)}: {rel}")
 
     block = "# NAV:BEGIN\n" + "\n".join(nav) + "\n# NAV:END"
     text = MKDOCS_YML.read_text(encoding="utf-8")
