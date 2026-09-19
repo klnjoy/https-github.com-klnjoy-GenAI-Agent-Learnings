@@ -39,6 +39,11 @@ jobs:
         # site only — no local-only course materials.
         run: python sync_docs.py
 
+      - name: Build interview practice questions
+        # Regenerates docs/assets/interview_questions.json from the interview
+        # Q&A pages so the Practice page always has the latest bank.
+        run: python build_practice_questions.py
+
       - name: Build site
         run: mkdocs build --clean
 

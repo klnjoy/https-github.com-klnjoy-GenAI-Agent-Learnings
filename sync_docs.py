@@ -775,7 +775,7 @@ def write_index(md_catalog, modules) -> None:
         "around it — architecture, deep-dive study notes, interview prep, and a "
         "built-in retrieval agent that answers from this content.</p>",
         "",
-        '<p class="home-cta">'
+        '<p class="home-cta" markdown>'
         '[:material-flag-checkered: Start Here](Start-Here/index.md){ .md-button .md-button--primary }'
         "&nbsp;"
         "[:material-rocket-launch: Setup Guides](Setup-Guides/index.md){ .md-button }"
