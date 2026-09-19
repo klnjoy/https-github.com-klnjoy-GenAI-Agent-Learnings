@@ -705,7 +705,10 @@
 
 /* Hide the permalink ¶ on the top page title (h1) — it looks like a stray glyph
    next to the brand/hero heading. Section headings (h2+) keep theirs for
-   shareable anchors. */
-.md-typeset h1 .headerlink { display: none; }
+   shareable anchors. Use !important to beat the theme's own .headerlink rules
+   regardless of stylesheet load order. */
+.md-typeset h1 > .headerlink,
+.md-typeset h1 .headerlink { display: none !important; }
 /* Also hide it inside branded hero blocks regardless of heading level. */
-.ig-hero .headerlink { display: none; }
+.ig-hero .headerlink,
+.ig-hero .headerlink { display: none !important; }
