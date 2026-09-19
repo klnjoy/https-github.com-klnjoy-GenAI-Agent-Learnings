@@ -1044,7 +1044,15 @@ def write_nav(md_catalog, modules) -> None:
     study_entries = sorted(buckets.get("Study Guide", []), key=lambda e: e[1].lower())
     if study_entries or modules:
         nav.append("  - Study Guide:")
+        # Emit the study book as the bare section index (it has icon front matter)
+        # so the section shows an icon in the nav; the rest follow as children.
+        study_index = "GenAI-AgenticAI-Complete-Study-Book.md"
+        emitted_index = False
         for rel_dest, title in study_entries:
+            if Path(rel_dest).name == study_index and not emitted_index:
+                nav.append(f"      - {rel_dest}")  # bare = section index (icon)
+                emitted_index = True
+                continue
             nav.append(f"      - {nav_label(title)}: {rel_dest}")
         for mtitle, rel_dest, _count, _slug in sorted(modules, key=_module_sort_key):
             nav.append(f"      - {nav_label(mtitle)}: {rel_dest}")
@@ -1070,8 +1078,15 @@ def write_nav(md_catalog, modules) -> None:
             # everything else falls back to alphabetical by title.
             return (0, ov[0], "") if ov else (1, 0, e[1].lower())
 
+        # Sections whose first (index) page should be the bare section index, so
+        # Material renders the section icon from that page's `icon:` front matter.
+        SECTION_INDEX = {"Interview Guide": "Interview_Guide_Overview.md"}
+        index_base = SECTION_INDEX.get(name)
         for rel_dest, title in sorted(entries, key=_entry_key):
             base = Path(rel_dest).name
+            if base == index_base:
+                nav.append(f"      - {rel_dest}")  # bare = section index (icon)
+                continue
             ov = NAV_LABEL_OVERRIDES.get(base)
             label = nav_label(ov[1]) if ov else nav_label(title)
             nav.append(f"      - {label}: {rel_dest}")
@@ -1085,7 +1100,10 @@ def write_nav(md_catalog, modules) -> None:
     existing_labs = [(t, p) for (t, p) in lab_pages if (DOCS_DIR / p).exists()]
     if existing_labs:
         nav.append("  - Practice Labs:")
-        for title, rel in existing_labs:
+        # First entry as the bare section index so Material shows the section
+        # icon (from the page's `icon:` front matter) in the nav.
+        nav.append(f"      - {existing_labs[0][1]}")
+        for title, rel in existing_labs[1:]:
             nav.append(f"      - {nav_label(title)}: {rel}")
 
     block = "# NAV:BEGIN\n" + "\n".join(nav) + "\n# NAV:END"

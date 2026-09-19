@@ -156,7 +156,7 @@ nav:
       - Compliance: Enterprise/compliance/index.md
       - Reference Architectures: Enterprise/reference-architectures/index.md
   - Study Guide:
-      - "Generative AI & Agentic AI — Complete Study Book": Personal-SourceCode/GenAI-AgenticAI-Complete-Study-Book.md
+      - Personal-SourceCode/GenAI-AgenticAI-Complete-Study-Book.md
       - MODULE1-GENAI: Course-Modules/module1-genai.md
       - MODULE2-AWS-CLOUD: Course-Modules/module2-aws-cloud.md
       - MODULE3-PYTHON: Course-Modules/module3-python.md
@@ -169,7 +169,7 @@ nav:
       - MODULE10-BEDROCK-N-AGENTCORE: Course-Modules/module10-bedrock-n-agentcore.md
       - SUNDAY-SESSIONS: Course-Modules/sunday-sessions.md
   - Interview Guide:
-      - "Overview & Study Path": Personal-SourceCode/Interview_Guide_Overview.md
+      - Personal-SourceCode/Interview_Guide_Overview.md
       - Practice (Mock Session): Personal-SourceCode/Interview_Practice.md
       - Progress Dashboard: Personal-SourceCode/Interview_Progress.md
       - "GenAI Interview Q&A": Personal-SourceCode/GenAI_Interview_QA.md
@@ -191,7 +191,7 @@ nav:
       - "DevOps Interview Q&A": Personal-SourceCode/DevOps_Interview_QA.md
       - "Behavioral / STAR Interview Q&A": Personal-SourceCode/Behavioral_STAR_Interview_QA.md
   - Practice Labs:
-      - "Scenario Drills (Data & GenAI)": Personal-SourceCode/Lab_Scenario_Drills.md
+      - Personal-SourceCode/Lab_Scenario_Drills.md
   - Projects & POCs:
       - Data Migration (Oracle to Snowflake): Projects/data-migration/index.md
       - "GenAI POC (LangChain & LangGraph)": Projects/genai-poc/index.md
