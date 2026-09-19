@@ -2,15 +2,61 @@
 icon: material/clipboard-list
 ---
 
-# Interview Guide — Overview & Study Path
+<div class="ig-hero" markdown>
 
-Everything you need for interview prep in one place. This page is the single
-entry point: a recommended study order, the full question-bank index, and how to
-use the material. All pages are self-contained; external links are for optional
-deeper reference only.
+# Ace your next interview
+
+Your complete, self-contained prep hub — advanced Q&A across data, GenAI, and
+the full stack around it, with model answers, worked scenarios, and an
+interactive practice mode. Study smart, rehearse out loud, walk in ready.
+
+[:material-dumbbell: Start practicing](Interview_Practice.md){ .md-button .md-button--primary }
+[:material-book-open-variant: Browse question banks](#all-question-banks){ .md-button }
+
+</div>
+
+<div class="ig-features" markdown>
+
+<div class="ig-feature" markdown>
+<div class="ig-ico">🎯</div>
+### Role-tailored tracks
+Curated study orders for Data, AI/GenAI, Forward-Deployed, and Delivery roles.
+</div>
+
+<div class="ig-feature" markdown>
+<div class="ig-ico">🧠</div>
+### Advanced, not basics
+Scenario-based questions with model answers, "simple then nuance," and pitfalls.
+</div>
+
+<div class="ig-feature" markdown>
+<div class="ig-ico">📝</div>
+### Interactive practice
+Question-by-question mock mode with self-scoring — right here in the browser.
+</div>
+
+<div class="ig-feature" markdown>
+<div class="ig-ico">✅</div>
+### Self-quiz & recall
+Every page ends with a self-quiz and a "can you explain X?" checklist.
+</div>
+
+<div class="ig-feature" markdown>
+<div class="ig-ico">🗣️</div>
+### Behavioral ready
+A STAR story-bank builder so the non-technical round doesn't sink you.
+</div>
+
+<div class="ig-feature" markdown>
+<div class="ig-ico">📚</div>
+### Self-contained
+Everything's here; external links are optional deeper reference only.
+</div>
+
+</div>
 
 !!! tip "How to use this guide"
-    1. Pick your **track** below.
+    1. Pick your **track** below (or jump straight to [Practice mode](Interview_Practice.md)).
     2. On each page: skim **talking points** + **rapid-fire**, then drill into the
        collapsible questions, then run the **self-quiz** out loud.
     3. Build a **behavioral story bank** in parallel — it decides more interviews

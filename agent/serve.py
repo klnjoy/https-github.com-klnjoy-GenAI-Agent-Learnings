@@ -58,6 +58,18 @@ class AskRequest(BaseModel):
     k: int = Field(4, ge=1, le=10)
 
 
+class GradeRequest(BaseModel):
+    question: str = Field(..., min_length=2)
+    answer: str = Field(..., min_length=1)
+    model_answer: str = Field("", description="Reference answer to grade against.")
+
+
+class GradeResponse(BaseModel):
+    score: int
+    feedback: str
+    used_llm: bool
+
+
 class Citation(BaseModel):
     label: str
     url: str
@@ -94,6 +106,50 @@ def ask(req: AskRequest):
         answer=ans.text, citations=ans.citations,
         area=ans.area, used_llm=ans.used_llm,
     )
+
+
+@app.post("/grade", response_model=GradeResponse)
+def grade(req: GradeRequest):
+    """Grade a practice answer against a reference answer (LOCAL-ONLY feature).
+
+    Used by the Interview Practice page's optional "AI grade" button. Requires
+    an LLM backend (KB_LLM env var); otherwise returns used_llm=False with a
+    hint, and the practice page falls back to manual self-rating.
+    """
+    import json
+    import re
+
+    llm = get_llm()
+    if not llm:
+        return GradeResponse(
+            score=0, used_llm=False,
+            feedback=("No LLM backend configured. Set KB_LLM (e.g. bedrock/openai/"
+                      "ollama) to enable AI grading, or use manual self-rating."),
+        )
+
+    prompt = (
+        "You are an interview coach. Grade the candidate's answer against the "
+        "reference answer for the question. Score 1-5 (5 = excellent, complete, "
+        "accurate; 1 = missed it). Give two sentences of specific, constructive "
+        "feedback: what was good and what to add.\n\n"
+        f"Question: {req.question}\n\n"
+        f"Reference answer: {req.model_answer}\n\n"
+        f"Candidate answer: {req.answer}\n\n"
+        'Respond with JSON only: {"score": <int 1-5>, "feedback": "<text>"}'
+    )
+    try:
+        raw = llm(prompt)
+        m = re.search(r"\{.*\}", raw, re.DOTALL)
+        data = json.loads(m.group(0)) if m else {}
+        score = int(data.get("score", 0))
+        score = max(1, min(5, score)) if score else 0
+        feedback = str(data.get("feedback") or raw).strip()
+        return GradeResponse(score=score or 3, feedback=feedback, used_llm=True)
+    except Exception as exc:  # noqa: BLE001
+        return GradeResponse(
+            score=0, used_llm=False,
+            feedback=f"Grading failed ({exc}). Use manual self-rating instead.",
+        )
 
 
 @app.post("/reindex")

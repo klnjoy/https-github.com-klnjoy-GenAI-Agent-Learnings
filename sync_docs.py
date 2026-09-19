@@ -106,29 +106,29 @@ CATEGORY_ICONS["More"] = ":material-dots-horizontal:"
 # short readable labels in a deliberate order instead of long auto-titles.
 # (rel_dest basename -> (order, short label)).
 NAV_LABEL_OVERRIDES: dict[str, tuple[int, str]] = {
-    # Interview Guide — ordered concept-first, then role-specific,
+    # Interview Guide — landing + practice first, then role-specific,
     # then per-technology advanced Q&A banks.
-    "GenAI_Interview_QA.md": (1, "GenAI Interview Q&A"),
-    "Forward_Deployed_Engineer_Interview_QA.md": (2, "FDE Interview Q&A"),
-    "FDE_Coding_Interview_Prep.md": (3, "FDE Coding Prep"),
-    "FDE_LiveCoding_Scenarios_Prep.md": (4, "FDE Live-Coding & Scenarios"),
-    "Interview_Prep_Google_Cloud_Delivery_Lead.md": (5, "Cloud Delivery Lead Prep"),
-    # Landing page first.
     "Interview_Guide_Overview.md": (0, "Overview & Study Path"),
+    "Interview_Practice.md": (1, "Practice (Mock Session)"),
+    "GenAI_Interview_QA.md": (2, "GenAI Interview Q&A"),
+    "Forward_Deployed_Engineer_Interview_QA.md": (3, "FDE Interview Q&A"),
+    "FDE_Coding_Interview_Prep.md": (4, "FDE Coding Prep"),
+    "FDE_LiveCoding_Scenarios_Prep.md": (5, "FDE Live-Coding & Scenarios"),
+    "Interview_Prep_Google_Cloud_Delivery_Lead.md": (6, "Cloud Delivery Lead Prep"),
     # Per-technology / role advanced & scenario-based Q&A.
-    "AI_Engineer_Interview_QA.md": (6, "AI Engineer Interview Q&A"),
-    "Agents_Interview_QA.md": (7, "Agentic AI / Agents Interview Q&A"),
-    "LangChain_LangGraph_Interview_QA.md": (8, "LangChain / LangGraph Interview Q&A"),
-    "MCP_Interview_QA.md": (9, "MCP Interview Q&A"),
-    "SQL_Interview_QA.md": (10, "SQL Interview Q&A"),
-    "DataEngineering_Interview_QA.md": (11, "Data Engineering Interview Q&A"),
-    "Snowflake_Interview_QA.md": (12, "Snowflake Interview Q&A"),
-    "Databricks_Interview_QA.md": (13, "Databricks Interview Q&A"),
-    "dbt_Interview_QA.md": (14, "dbt Interview Q&A"),
-    "Python_Interview_QA.md": (15, "Python Interview Q&A"),
-    "AWS_Interview_QA.md": (16, "AWS Interview Q&A"),
-    "DevOps_Interview_QA.md": (17, "DevOps Interview Q&A"),
-    "Behavioral_STAR_Interview_QA.md": (18, "Behavioral / STAR Interview Q&A"),
+    "AI_Engineer_Interview_QA.md": (7, "AI Engineer Interview Q&A"),
+    "Agents_Interview_QA.md": (8, "Agentic AI / Agents Interview Q&A"),
+    "LangChain_LangGraph_Interview_QA.md": (9, "LangChain / LangGraph Interview Q&A"),
+    "MCP_Interview_QA.md": (10, "MCP Interview Q&A"),
+    "SQL_Interview_QA.md": (11, "SQL Interview Q&A"),
+    "DataEngineering_Interview_QA.md": (12, "Data Engineering Interview Q&A"),
+    "Snowflake_Interview_QA.md": (13, "Snowflake Interview Q&A"),
+    "Databricks_Interview_QA.md": (14, "Databricks Interview Q&A"),
+    "dbt_Interview_QA.md": (15, "dbt Interview Q&A"),
+    "Python_Interview_QA.md": (16, "Python Interview Q&A"),
+    "AWS_Interview_QA.md": (17, "AWS Interview Q&A"),
+    "DevOps_Interview_QA.md": (18, "DevOps Interview Q&A"),
+    "Behavioral_STAR_Interview_QA.md": (19, "Behavioral / STAR Interview Q&A"),
 }
 
 

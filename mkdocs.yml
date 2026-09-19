@@ -64,6 +64,7 @@ extra_css:
 extra_javascript:
   - assets/mermaid-init.js
   - assets/chatbot.js
+  - assets/practice.js
 
 markdown_extensions:
   - admonition
@@ -166,6 +167,7 @@ nav:
       - SUNDAY-SESSIONS: Course-Modules/sunday-sessions.md
   - Interview Guide:
       - "Overview & Study Path": Personal-SourceCode/Interview_Guide_Overview.md
+      - "Practice (Mock Session)": Personal-SourceCode/Interview_Practice.md
       - "GenAI Interview Q&A": Personal-SourceCode/GenAI_Interview_QA.md
       - "FDE Interview Q&A": Personal-SourceCode/Forward_Deployed_Engineer_Interview_QA.md
       - FDE Coding Prep: Personal-SourceCode/FDE_Coding_Interview_Prep.md
