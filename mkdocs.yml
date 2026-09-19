@@ -18,11 +18,12 @@ exclude_docs: |
 
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.svg
   font:
     text: Inter
     code: JetBrains Mono
   icon:
-    logo: material/bullseye-arrow
     repo: material/github
   palette:
     - media: "(prefers-color-scheme: light)"

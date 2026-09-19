@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="OfferReady">
+  <title>OfferReady</title>
+  <!--
+    OfferReady mark: a bullseye target with an upward arrow striking the centre
+    ("hit the target / land the offer"). Rendered in white so it reads on the
+    coloured header bar; the gradient version is used elsewhere.
+  -->
+  <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- outer ring, left open at the top-right so the arrow can enter -->
+    <path d="M38.5 13.5A17 17 0 1 0 41 22" />
+    <!-- middle ring -->
+    <circle cx="24" cy="24" r="10.5" />
+  </g>
+  <!-- bullseye centre -->
+  <circle cx="24" cy="24" r="4.2" fill="#ffffff" />
+  <!-- upward arrow striking the centre -->
+  <g fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 24 L39 9" />
+    <path d="M31.5 8.5 L40 8 L39.5 16.5" />
+  </g>
+</svg>
