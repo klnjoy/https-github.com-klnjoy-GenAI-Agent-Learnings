@@ -780,8 +780,6 @@ def write_index(md_catalog, modules) -> None:
         '[:material-briefcase-check: Interview Guide](Personal-SourceCode/Interview_Guide_Overview.md){ .md-button .md-button--primary }'
         "&nbsp;"
         "[:material-dumbbell: Practice mode](Personal-SourceCode/Interview_Practice.md){ .md-button }"
-        "&nbsp;"
-        "[:material-tag-heart: Pricing](Personal-SourceCode/Pricing.md){ .md-button }"
         "</p>",
         "",
         '<p class="home-stats">'
@@ -1008,8 +1006,7 @@ def write_nav(md_catalog, modules) -> None:
     buckets = _bucketize(md_catalog)
 
     nav = ["nav:", "  - Home: index.md",
-           "  - Start Here: Start-Here/index.md",
-           "  - Pricing: Personal-SourceCode/Pricing.md"]
+           "  - Start Here: Start-Here/index.md"]
 
     # Technologies
     nav.append("  - Technologies:")

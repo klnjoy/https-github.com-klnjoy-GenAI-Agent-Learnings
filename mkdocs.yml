@@ -102,7 +102,6 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Start Here: Start-Here/index.md
-  - Pricing: Personal-SourceCode/Pricing.md
   - Technologies:
       - Overview: Technologies/index.md
       - Snowflake: Technologies/snowflake/index.md
