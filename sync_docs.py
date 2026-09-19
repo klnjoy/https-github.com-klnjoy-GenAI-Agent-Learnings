@@ -81,6 +81,10 @@ EXCLUDE_MODULE_FRAGMENTS = ("DAILY-LOGS", "DAILY RECORDINGS")
 # it local-only (e.g. anything with confidential/employer-specific material).
 EXCLUDE_FILE_NAMES: set[str] = set()
 
+# Files copied into docs/ but kept OUT of the auto-generated nav catalog because
+# they're placed explicitly elsewhere in the nav (avoids duplicate entries).
+COPY_NO_CATALOG: set[str] = {"Pricing.md"}
+
 
 # ---------------------------------------------------------------------------
 # Front-page / nav categories for the *readable* personal docs
@@ -450,6 +454,12 @@ def sync_markdown() -> list[tuple[str, str, str]]:
             dest = DOCS_DIR / label / rel
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(md, dest)
+            # Copy some pages but keep them OUT of the auto-catalog so they don't
+            # get double-listed in nav/landing — they're placed explicitly
+            # elsewhere (e.g. Pricing is a top-level nav item written by hand in
+            # write_nav()).
+            if md.name in COPY_NO_CATALOG:
+                continue
             catalog.append((label, f"{label}/{rel.as_posix()}", first_heading(md)))
     return catalog
 
@@ -996,7 +1006,8 @@ def write_nav(md_catalog, modules) -> None:
     buckets = _bucketize(md_catalog)
 
     nav = ["nav:", "  - Home: index.md",
-           "  - Start Here: Start-Here/index.md"]
+           "  - Start Here: Start-Here/index.md",
+           "  - Pricing: Personal-SourceCode/Pricing.md"]
 
     # Technologies
     nav.append("  - Technologies:")
