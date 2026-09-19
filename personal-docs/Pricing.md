@@ -4,7 +4,7 @@ icon: material/tag-heart
 
 <div class="ig-hero" markdown>
 
-# 🎯 OfferReady Pricing
+# OfferReady Pricing
 
 **Prep smarter. Land the offer.** Advanced, role-tailored question banks, model
 answers, worked scenarios, and an interactive practice mode — everything you

@@ -4,7 +4,7 @@ icon: material/clipboard-list
 
 <div class="ig-hero" markdown>
 
-# 🎯 OfferReady — your interview prep hub
+# OfferReady — your interview prep hub
 
 **Prep smarter. Land the offer.** A complete, self-contained hub — advanced Q&A
 across data, GenAI, and the full stack around it, with model answers, worked

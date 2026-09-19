@@ -83,7 +83,12 @@ EXCLUDE_FILE_NAMES: set[str] = set()
 
 # Files copied into docs/ but kept OUT of the auto-generated nav catalog because
 # they're placed explicitly elsewhere in the nav (avoids duplicate entries).
-COPY_NO_CATALOG: set[str] = {"Pricing.md", "Lab_Scenario_Drills.md"}
+COPY_NO_CATALOG: set[str] = {
+    "Pricing.md",
+    "Lab_Scenario_Drills.md",
+    "Lab_LiveCoding_Drills.md",
+    "Lab_Hackathon_Builds.md",
+}
 
 
 # ---------------------------------------------------------------------------
@@ -768,7 +773,7 @@ def write_index(md_catalog, modules) -> None:
 
     total_areas = len(TECHNOLOGIES) + len(TOPICS)
     lines = [
-        "# 🎯 OfferReady",
+        "# OfferReady",
         "",
         '<p class="home-hero"><strong>Prep smarter. Land the offer.</strong> '
         "OfferReady is a hands-on prep hub for <strong>data &amp; GenAI</strong> "
@@ -1096,6 +1101,8 @@ def write_nav(md_catalog, modules) -> None:
     # COPY_NO_CATALOG so they aren't double-listed).
     lab_pages = [
         ("Scenario Drills (Data & GenAI)", "Personal-SourceCode/Lab_Scenario_Drills.md"),
+        ("Live-Coding Drills", "Personal-SourceCode/Lab_LiveCoding_Drills.md"),
+        ("Hackathon Build Challenges", "Personal-SourceCode/Lab_Hackathon_Builds.md"),
     ]
     existing_labs = [(t, p) for (t, p) in lab_pages if (DOCS_DIR / p).exists()]
     if existing_labs:
