@@ -148,6 +148,21 @@ guessing and started answering with structure."
 
 </div>
 
+## Join the waitlist
+
+Paid plans aren't live yet. Drop your email and we'll let you know the moment
+Pro (AI grading, progress tracking, downloadable summaries) launches — plus an
+early-bird discount for waitlist members.
+
+<form class="pr-waitlist" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+  <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address" />
+  <input type="hidden" name="_subject" value="New interview-prep waitlist signup" />
+  <button type="submit">Notify me</button>
+</form>
+<p class="pr-note">No spam, one email at launch. Replace the form action with your
+own <a href="https://formspree.io" rel="noopener">Formspree</a> (or Tally/Getform)
+endpoint to start collecting signups.</p>
+
 ## FAQ
 
 ??? question "Is there really a free tier?"

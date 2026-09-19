@@ -81,6 +81,46 @@ def extract(md_path: Path) -> list[dict]:
         text = clean(text)
         if prompt and text:
             out.append({"q": prompt, "a": text})
+    if not out:
+        # Fallback: pages authored as `### <question>?` followed by an `A:`
+        # answer (e.g. GenAI_Interview_QA). Only capture headings that look
+        # like questions and have a real answer, so we skip snippet lists.
+        out = extract_heading_qa(lines)
+    return out
+
+
+HEAD_RE = re.compile(r"^#{2,4}\s+(.*\S)\s*$")
+
+
+def extract_heading_qa(lines: list[str]) -> list[dict]:
+    """Extract Q/A pairs written as a heading question + an 'A:' answer block."""
+    out: list[dict] = []
+    i, n = 0, len(lines)
+    while i < n:
+        m = HEAD_RE.match(lines[i])
+        if not m:
+            i += 1
+            continue
+        raw = m.group(1).strip()
+        # Normalize a heading into a question prompt.
+        prompt = re.sub(r"^(Q\d+[:.)]?|Q[:.)]|\d+[.)])\s*", "", raw).strip()
+        is_question = raw.rstrip().endswith("?") or bool(re.match(r"^Q\d*[:.)]", raw))
+        i += 1
+        # Gather body until the next heading.
+        body: list[str] = []
+        while i < n and not HEAD_RE.match(lines[i]):
+            body.append(lines[i])
+            i += 1
+        blob = "\n".join(body)
+        # Prefer the text after an "A:" marker as the model answer.
+        am = re.search(r"(?:^|\n)\s*(?:\*\*)?A:(?:\*\*)?\s*(.+)", blob, re.DOTALL)
+        answer_src = am.group(1) if am else blob
+        answer_src = re.sub(r"```[\s\S]*?```", "", answer_src)  # drop code
+        answer = clean(answer_src)
+        # Keep only genuine Q&A: a question-looking heading + a substantive
+        # prose answer (skip pure code-snippet fundamentals).
+        if is_question and prompt and len(answer.split()) >= 8:
+            out.append({"q": prompt, "a": answer})
     return out
 
 
