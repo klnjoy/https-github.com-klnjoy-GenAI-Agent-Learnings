@@ -768,19 +768,20 @@ def write_index(md_catalog, modules) -> None:
 
     total_areas = len(TECHNOLOGIES) + len(TOPICS)
     lines = [
-        "# GenAI & Agentic AI Knowledge Base",
+        "# 🎯 OfferReady",
         "",
-        '<p class="home-hero">A hands-on knowledge base for <strong>Generative '
-        "&amp; Agentic AI</strong> and the <strong>data &amp; cloud</strong> stack "
-        "around it — architecture, deep-dive study notes, interview prep, and a "
-        "built-in retrieval agent that answers from this content.</p>",
+        '<p class="home-hero"><strong>Prep smarter. Land the offer.</strong> '
+        "OfferReady is a hands-on prep hub for <strong>data &amp; GenAI</strong> "
+        "interviews — advanced question banks with model answers, worked "
+        "scenarios, an interactive practice mode, and deep-dive study notes on the "
+        "whole GenAI &amp; data/cloud stack.</p>",
         "",
         '<p class="home-cta" markdown>'
-        '[:material-flag-checkered: Start Here](Start-Here/index.md){ .md-button .md-button--primary }'
+        '[:material-briefcase-check: Interview Guide](Personal-SourceCode/Interview_Guide_Overview.md){ .md-button .md-button--primary }'
         "&nbsp;"
-        "[:material-rocket-launch: Setup Guides](Setup-Guides/index.md){ .md-button }"
+        "[:material-dumbbell: Practice mode](Personal-SourceCode/Interview_Practice.md){ .md-button }"
         "&nbsp;"
-        "[:material-sitemap: Architecture](Documentation/architecture-overview/index.md){ .md-button }"
+        "[:material-tag-heart: Pricing](Personal-SourceCode/Pricing.md){ .md-button }"
         "</p>",
         "",
         '<p class="home-stats">'

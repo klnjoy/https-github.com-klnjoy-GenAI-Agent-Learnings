@@ -4,11 +4,12 @@ icon: material/tag-heart
 
 <div class="ig-hero" markdown>
 
-# Prep smarter. Interview with confidence.
+# 🎯 OfferReady Pricing
 
-Advanced, role-tailored question banks, model answers, worked scenarios, and an
-interactive practice mode — everything you need to walk into your next data or
-GenAI interview ready. Start free, upgrade when you want more.
+**Prep smarter. Land the offer.** Advanced, role-tailored question banks, model
+answers, worked scenarios, and an interactive practice mode — everything you
+need to walk into your next data or GenAI interview ready. Start free, upgrade
+when you want more.
 
 [:material-rocket-launch: Start free](Interview_Guide_Overview.md){ .md-button .md-button--primary }
 [:material-dumbbell: Try practice mode](Interview_Practice.md){ .md-button }

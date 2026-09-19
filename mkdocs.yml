@@ -1,6 +1,7 @@
-site_name: GenAI & Agentic AI Knowledge Base
-site_description: Personal study material and notes for GenAI / Agentic AI and the data/cloud stack.
+site_name: OfferReady
+site_description: OfferReady — prep smarter and land the offer. Advanced interview question banks, model answers, and an interactive practice mode for data & GenAI roles.
 site_url: https://klnjoy.github.io/https-github.com-klnjoy-GenAI-Agent-Learnings/
+copyright: © 2026 OfferReady · Prep smarter. Land the offer.
 
 # All markdown is copied into docs/ by sync_docs.py before building.
 docs_dir: docs
@@ -21,7 +22,7 @@ theme:
     text: Inter
     code: JetBrains Mono
   icon:
-    logo: material/brain
+    logo: material/target
     repo: material/github
   palette:
     - media: "(prefers-color-scheme: light)"

@@ -668,3 +668,37 @@
   background: linear-gradient(135deg, var(--kb-grad-1), var(--kb-grad-2));
 }
 .pr-waitlist button:hover { filter: brightness(1.08); }
+
+/* ============================================================
+   OfferReady branding
+   ============================================================ */
+
+/* Header wordmark — style the site title next to the target logo */
+.md-header__title .md-header__topic:first-child .md-ellipsis {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: 1.05rem;
+}
+
+/* Gradient accent on the logo mark */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  color: #fff;
+}
+
+/* Branded footer accent bar + copyright styling */
+.md-footer-meta {
+  background: linear-gradient(135deg, var(--kb-grad-2), var(--kb-grad-1));
+}
+.md-footer-meta__inner .md-footer-copyright {
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+/* Small brand chip usable inline in content (e.g. <span class="or-chip">) */
+.or-chip {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.15rem 0.6rem; border-radius: 2rem;
+  background: linear-gradient(135deg, var(--kb-grad-1), var(--kb-grad-2));
+  color: #fff; font-size: 0.72rem; font-weight: 700;
+}

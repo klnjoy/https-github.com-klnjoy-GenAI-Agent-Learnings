@@ -4,11 +4,12 @@ icon: material/clipboard-list
 
 <div class="ig-hero" markdown>
 
-# Ace your next interview
+# 🎯 OfferReady — your interview prep hub
 
-Your complete, self-contained prep hub — advanced Q&A across data, GenAI, and
-the full stack around it, with model answers, worked scenarios, and an
-interactive practice mode. Study smart, rehearse out loud, walk in ready.
+**Prep smarter. Land the offer.** A complete, self-contained hub — advanced Q&A
+across data, GenAI, and the full stack around it, with model answers, worked
+scenarios, and an interactive practice mode. Study smart, rehearse out loud,
+walk in ready.
 
 [:material-dumbbell: Start practicing](Interview_Practice.md){ .md-button .md-button--primary }
 [:material-book-open-variant: Browse question banks](#all-question-banks){ .md-button }
