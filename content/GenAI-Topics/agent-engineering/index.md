@@ -9,6 +9,11 @@ tools, and act** reliably — turning a chat model into a system that completes
 multi-step goals. It's broader than any one framework (LangGraph, AgentCore):
 patterns, tool design, control, and reliability.
 
+!!! tip "Want the detailed version?"
+    This page is the survey. For a code-level deep dive — each **principle** and
+    **pattern** with mechanism, code, trade-offs, and anti-patterns — see
+    **[Building AI Agents — Principles & Patterns](../agent-principles/index.md)**.
+
 <!-- RELATED-MODULE -->
 
 ## The core loop and its patterns

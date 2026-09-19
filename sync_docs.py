@@ -195,6 +195,8 @@ TOPICS: list[tuple[str, str, str, str]] = [
      "Model Context Protocol: connect LLMs to tools and data."),
     ("agent-engineering", "Agent Engineering", ":material-robot-industrial:",
      "Agent patterns, tool design, multi-agent, reliability."),
+    ("agent-principles", "Building Agents — Deep Dive", ":material-robot-industrial:",
+     "Principles + patterns with code, trade-offs, and anti-patterns."),
     ("a2a", "A2A Communication", ":material-account-switch:",
      "Agent-to-agent coordination; MCP vs A2A."),
     ("agentcore", "AgentCore", ":material-account-cog:",
